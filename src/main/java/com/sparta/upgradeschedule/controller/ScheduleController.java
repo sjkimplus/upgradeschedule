@@ -13,19 +13,19 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     // 저장
-    @PostMapping("/schedule")
+    @PostMapping("/schedules")
     public void createSchedule(@RequestBody ScheduleRequestDto requestDto) {
         scheduleService.createSchedule(requestDto);
     }
 
     // 수정
-    @PutMapping("/schedule/{id}")
+    @PutMapping("/schedules/{id}")
     public void updateSchedule(@PathVariable("id") long id, @RequestBody ScheduleRequestDto requestDto) {
         scheduleService.updateSchedule(id, requestDto);
     }
 
     // 조회
-    @GetMapping("/schedule/{id}")
+    @GetMapping("/schedules/{id}")
     public ScheduleResponseDto getSchedule(@PathVariable("id") long id) {
         return scheduleService.getSchedule(id);
     }

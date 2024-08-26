@@ -9,11 +9,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "schedule")
+//@Table(name = "schedule")
 @EntityListeners(AuditingEntityListener.class)
 public class Schedule {
     @Id
@@ -31,9 +33,9 @@ public class Schedule {
     @Column(name = "date_modified")
     private LocalDateTime modifiedDate;
 
-//    @Column(name = "date_created", updatable = false)
-//    private Timestamp dateCreated;
-//    @Column(name = "date_modified")
-//    private Timestamp dateModified;
+    // mappedBy corresponds to the name of the field
+    // in the "child" entity that owns the relationship
+    @OneToMany(mappedBy = "schedule")
+    private List<Comment> commentList = new ArrayList<>();
 }
 
