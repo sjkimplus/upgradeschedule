@@ -3,6 +3,7 @@ import com.sparta.upgradeschedule.dto.ScheduleRequestDto;
 import com.sparta.upgradeschedule.dto.ScheduleResponseDto;
 import com.sparta.upgradeschedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,5 +31,11 @@ public class ScheduleController {
         return scheduleService.getSchedule(id);
     }
 
-
+    // 페이징/정렬
+    @GetMapping("/schedules")
+    public Page<ScheduleResponseDto> getSchedules(
+            @RequestParam("page") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size) {
+        return scheduleService.getSchedules(page-1, size);
+    }
 }
