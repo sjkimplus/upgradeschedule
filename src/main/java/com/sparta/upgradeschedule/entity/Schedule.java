@@ -35,7 +35,7 @@ public class Schedule {
 
     // mappedBy corresponds to the name of the field
     // in the "child" entity that owns the relationship
-    @OneToMany(mappedBy = "schedule")
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.REMOVE)
     private List<Comment> commentList = new ArrayList<>();
 }
 

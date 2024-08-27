@@ -38,4 +38,10 @@ public class ScheduleController {
             @RequestParam(value = "size", defaultValue = "10") int size) {
         return scheduleService.getSchedules(page-1, size);
     }
+
+    // 삭제
+    @DeleteMapping("/schedules/{id}")
+    public void deleteSchedule(@PathVariable("id") long id) {
+        scheduleService.deleteSchedule(id);
+    }
 }
