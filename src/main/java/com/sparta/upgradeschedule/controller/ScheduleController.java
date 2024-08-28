@@ -1,6 +1,7 @@
 package com.sparta.upgradeschedule.controller;
+import com.sparta.upgradeschedule.dto.GeneralScheduleResponseDto;
 import com.sparta.upgradeschedule.dto.ScheduleRequestDto;
-import com.sparta.upgradeschedule.dto.ScheduleResponseDto;
+import com.sparta.upgradeschedule.dto.IndividualScheduleResponseDto;
 import com.sparta.upgradeschedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,13 +28,13 @@ public class ScheduleController {
 
     // 조회
     @GetMapping("/schedules/{id}")
-    public ScheduleResponseDto getSchedule(@PathVariable("id") long id) {
+    public IndividualScheduleResponseDto getSchedule(@PathVariable("id") long id) {
         return scheduleService.getSchedule(id);
     }
 
     // 페이징/정렬
     @GetMapping("/schedules")
-    public Page<ScheduleResponseDto> getSchedules(
+    public Page<GeneralScheduleResponseDto> getSchedules(
             @RequestParam("page") int page,
             @RequestParam(value = "size", defaultValue = "10") int size) {
         return scheduleService.getSchedules(page-1, size);
