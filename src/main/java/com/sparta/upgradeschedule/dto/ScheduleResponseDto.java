@@ -10,19 +10,21 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ScheduleResponseDto {
-    private String user;
+    private Long userId;
     private String title;
     private String content;
     private String createdDate;
     private String modifiedDate;
     private int numberOfComments;
+    private int numberOfParticipants;
 
     public ScheduleResponseDto(Schedule schedule) {
-        this.user = schedule.getUser();
-        this.title = schedule.getContent();
+        this.userId = schedule.getUserId();
+        this.title = schedule.getTitle();
         this.content = schedule.getContent();
         this.createdDate = String.valueOf(schedule.getCreatedDate());
         this.modifiedDate = String.valueOf(schedule.getModifiedDate());
         this.numberOfComments = schedule.getCommentList().size();
+        this.numberOfParticipants = schedule.getParticipantList().size();
     }
 }

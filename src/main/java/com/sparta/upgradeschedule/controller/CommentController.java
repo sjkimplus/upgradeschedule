@@ -2,7 +2,9 @@ package com.sparta.upgradeschedule.controller;
 
 import com.sparta.upgradeschedule.dto.CommentRequestDto;
 import com.sparta.upgradeschedule.dto.CommentResponseDto;
+import com.sparta.upgradeschedule.entity.Schedule;
 import com.sparta.upgradeschedule.service.CommentService;
+import com.sparta.upgradeschedule.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class CommentController {
     private final CommentService commentService;
+    private final ScheduleService scheduleService;
 
     // 댓글 저장
     @PostMapping("/comments/{id}")

@@ -7,7 +7,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,12 +15,13 @@ import java.util.List;
 @Getter
 @Setter
 //@Table(name = "schedule")
-@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class) // this is needed for date.time generation
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String user;
+
+    private Long userId; // unique user id
     private String title;
     private String content;
 
@@ -35,7 +35,12 @@ public class Schedule {
 
     // mappedBy corresponds to the name of the field
     // in the "child" entity that owns the relationship
-    @OneToMany(mappedBy = "schedule", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Comment> commentList = new ArrayList<>();
+    //orphanRemoval should be set to true in cases for DB to be synchronized when individual comments are deleted
+
+    @OneToMany(mappedBy = "schedule")
+    private List<Participant> participantList = new ArrayList<>(); // participants for this schedule
+
 }
 

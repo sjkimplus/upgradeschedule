@@ -1,5 +1,4 @@
 package com.sparta.upgradeschedule.service;
-import com.fasterxml.jackson.databind.introspect.AnnotatedAndMetadata;
 import com.sparta.upgradeschedule.dto.ScheduleRequestDto;
 import com.sparta.upgradeschedule.dto.ScheduleResponseDto;
 import com.sparta.upgradeschedule.entity.Schedule;
@@ -21,7 +20,7 @@ public class ScheduleService {
 
     public void createSchedule(ScheduleRequestDto requestDto) {
         Schedule schedule = new Schedule();
-        schedule.setUser(requestDto.getUser());
+        schedule.setUserId(requestDto.getUserId());
         schedule.setTitle(requestDto.getTitle());
         schedule.setContent(requestDto.getContent());
         scheduleRepository.save(schedule);
