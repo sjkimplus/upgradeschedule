@@ -39,7 +39,7 @@ public class Schedule {
     private List<Comment> commentList = new ArrayList<>();
     //orphanRemoval should be set to true in cases for DB to be synchronized when individual comments are deleted
 
-    @OneToMany(mappedBy = "schedule")
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.REMOVE)
     private List<Participant> participantList = new ArrayList<>(); // participants for this schedule
 
 }

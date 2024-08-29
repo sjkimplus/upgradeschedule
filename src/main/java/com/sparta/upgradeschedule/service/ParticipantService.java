@@ -24,4 +24,8 @@ public class ParticipantService {
         Participant participant = new Participant(schedule, user);
         participantRepository.save(participant);
     }
+
+    public void deleteParticipant(long id) {
+        participantRepository.deleteById(id);
+    }
 }

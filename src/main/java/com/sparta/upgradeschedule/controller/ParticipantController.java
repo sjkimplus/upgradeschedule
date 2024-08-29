@@ -3,10 +3,7 @@ package com.sparta.upgradeschedule.controller;
 import com.sparta.upgradeschedule.dto.ParticipantRequestDto;
 import com.sparta.upgradeschedule.service.ParticipantService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +16,12 @@ public class ParticipantController {
     @PostMapping("/participants")
     public void addParticipant(@RequestBody ParticipantRequestDto requestDto) {
         participantService.addParticipant(requestDto);
+    }
+
+    // 참가자 삭제
+    @DeleteMapping("/participants/{id}")
+    public void deleteParticipant(@PathVariable("id") long id) {
+        participantService.deleteParticipant(id);
     }
 
 
